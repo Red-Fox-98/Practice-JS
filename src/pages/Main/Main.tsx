@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { onButtonClick } from "src/main";
-import CounterButton from "src/anotherCode/components/CounterButton/CounterButton";
+import { onButtonClick } from "../../main";
+import CounterButton from "../../widgets/CounterButton/CounterButton";
 import Styles from "./main.module.scss";
 
 const Main: React.FC = () => {

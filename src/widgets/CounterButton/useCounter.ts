@@ -4,7 +4,7 @@ export const useCounter = () => {
   const [counter, setCounter] = useState(0);
 
   const upCounter = (): void => {
-    setCounter((prev) => ++prev);
+    setCounter((prev) => prev + 1);
   };
   return {
     counter,

@@ -2,28 +2,25 @@ import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 const Main = React.lazy(
-  () =>
-    import(/* webpackChunkName: "Main", webpackPrefetch: true */ "src/anotherCode/scene/Main/Main")
+  () => import(/* webpackChunkName: "Main", webpackPrefetch: true */ "../pages/Main/Main")
 );
 
 const Secondary = React.lazy(
   () =>
     import(
-      /* webpackChunkName: "Secondary", webpackPrefetch: true */ "src/anotherCode/scene/Secondary/Secondary"
+      /* webpackChunkName: "Secondary", webpackPrefetch: true */ "../pages/Secondary/Secondary"
     )
 );
 
 const NotFound = React.lazy(
   () =>
-    import(
-      /* webpackChunkName: "NotFound", webpackPrefetch: true */ "src/anotherCode/components/NotFound/NotFound"
-    )
+    import(/* webpackChunkName: "NotFound", webpackPrefetch: true */ "../pages/NotFound/NotFound")
 );
 
 const Calculator = React.lazy(
   () =>
     import(
-      /* webpackChunkName: "Calculator", webpackPrefetch: true */ "src/anotherCode/scene/Calculator/Calculator"
+      /* webpackChunkName: "Calculator", webpackPrefetch: true */ "../pages/Calculator/Calculator"
     )
 );
 
