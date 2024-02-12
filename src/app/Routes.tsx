@@ -5,13 +5,6 @@ const Main = React.lazy(
   () => import(/* webpackChunkName: "Main", webpackPrefetch: true */ "../pages/Main/Main")
 );
 
-const Secondary = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: "Secondary", webpackPrefetch: true */ "../pages/Secondary/Secondary"
-    )
-);
-
 const NotFound = React.lazy(
   () =>
     import(/* webpackChunkName: "NotFound", webpackPrefetch: true */ "../pages/NotFound/NotFound")
@@ -30,7 +23,6 @@ const RoutesContainer: React.FC = (): React.ReactElement => {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/main' element={<Main />} />
-        <Route path='/secondary' element={<Secondary />} />
         <Route path='/calculator' element={<Calculator />} />
         <Route element={<NotFound />} />
       </Routes>
