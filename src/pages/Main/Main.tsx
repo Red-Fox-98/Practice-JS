@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { onButtonClick } from "src/main";
-import CounterButton from "src/anotherCode/components/CounterButton/CounterButton";
+import CounterButton from "../../widgets/CounterButton/CounterButton";
 import Styles from "./main.module.scss";
+import TaskRunButton from "../../widgets/TaskRunButton/TaskRunButton";
 
 const Main: React.FC = () => {
   const [title, setTitle] = useState("Счетчик");
@@ -13,10 +13,10 @@ const Main: React.FC = () => {
 
   return (
     <div className={Styles.screen}>
+      <TaskRunButton />
       <button
         className={Styles.button}
         onClick={() => {
-          onButtonClick();
           setTitle("Счетчик2");
         }}
       >
