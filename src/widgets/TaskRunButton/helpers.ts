@@ -1,3 +1,3 @@
-import { ButtonClickType } from "src/types";
+import { ButtonClickType } from "./types";
 
 export const onButtonClick: ButtonClickType = async (): Promise<void> => {};
