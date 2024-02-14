@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import Style from "./calculator.module.scss";
 
 /*
     Создать калькулятор
@@ -22,6 +23,20 @@ import React, { FC } from "react";
 */
 
 const Calculator: FC = () => {
-  return <div>Калькулятор</div>;
+  return (
+    <div className={Style.screen}>
+      <input className={Style.input} type='number' placeholder='Введите число' />
+      <input className={Style.input} type='number' placeholder='Введите число' />
+
+      <div className={Style.buttons}>
+        <button className={Style.button}>+</button>
+        <button className={Style.button}>-</button>
+        <button className={Style.button}>/</button>
+        <button className={Style.button}>*</button>
+      </div>
+
+      <input className={Style.output} type='text' readOnly={true} />
+    </div>
+  );
 };
 export default Calculator;
