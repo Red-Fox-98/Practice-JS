@@ -1,5 +1,9 @@
 import React, { FC } from "react";
 import Style from "./calculator.module.scss";
+import AdditionButton from "../../widgets/CalculatorButtons/Addition/AdditionButton";
+import SubtractionButton from "../../widgets/CalculatorButtons/Subtraction/SubtractionButton";
+import DivisionButton from "../../widgets/CalculatorButtons/Division/DivisionButton";
+import MultiplicationButton from "../../widgets/CalculatorButtons/Multiplication/MultiplicationButton";
 
 /*
     Создать калькулятор
@@ -11,7 +15,7 @@ import Style from "./calculator.module.scss";
     Важно: в строки ввода можно ввести тоьлко целые числа (НЕ буквы, НЕ десятичные числа)
 
     путь выполнения:
-    1. Создать кнопки с действиями и проверить, что они нажимаются (например при нажатии логировать фразу)
+    1. +Создать кнопки с действиями и проверить, что они нажимаются (например при нажатии логировать фразу)
     2. Создать инпуты и проверить, что введеный текст сохраняется (<input onChange={(event) => handleInputUpdate(event.currentTarget.value)} />)
     3. Добавить валидацию на инпуты. Валидация должна ЗАПРЕЩАТЬ ввод не валидного символа, а не "красить" инпут в красный цвет
     4. "Собрать" кнопки и строки в единую систему
@@ -29,10 +33,18 @@ const Calculator: FC = () => {
       <input className={Style.input} type='number' placeholder='Введите число' />
 
       <div className={Style.buttons}>
-        <button className={Style.button}>+</button>
-        <button className={Style.button}>-</button>
-        <button className={Style.button}>/</button>
-        <button className={Style.button}>*</button>
+        <button className={Style.button} onClick={AdditionButton}>
+          +
+        </button>
+        <button className={Style.button} onClick={SubtractionButton}>
+          -
+        </button>
+        <button className={Style.button} onClick={MultiplicationButton}>
+          *
+        </button>
+        <button className={Style.button} onClick={DivisionButton}>
+          /
+        </button>
       </div>
 
       <input className={Style.output} type='text' readOnly={true} />
