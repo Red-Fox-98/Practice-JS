@@ -1,9 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Style from "./calculator.module.scss";
-import AdditionButton from "../../widgets/CalculatorButtons/Addition/AdditionButton";
-import SubtractionButton from "../../widgets/CalculatorButtons/Subtraction/SubtractionButton";
-import DivisionButton from "../../widgets/CalculatorButtons/Division/DivisionButton";
-import MultiplicationButton from "../../widgets/CalculatorButtons/Multiplication/MultiplicationButton";
+import ActionButton, { Action } from "../../widgets/ActionButton/ActionButton";
 
 /*
     Создать калькулятор
@@ -25,26 +22,44 @@ import MultiplicationButton from "../../widgets/CalculatorButtons/Multiplication
     2. Компонент для кнопки (в нее в пропсах нужно передавать действие, за которое она отвечает)
     3. Компонент для результата, который будет все считать и выводить ответ
 */
-
+console.log();
 const Calculator: FC = () => {
+  const [firstValue, setFirstValue] = useState("");
+  const [secondValue, setSecondValue] = useState("");
+
+  const onActionClick = (action: Action): void => {
+    console.log(action);
+    switch (action) {
+      case "+":
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleChangeFirstValue = (newValue: string): void => {
+    console.log(newValue);
+    if (Number.isNaN(+newValue)) {
+      return;
+    }
+    setFirstValue(newValue.trim());
+  };
+
   return (
     <div className={Style.screen}>
-      <input className={Style.input} type='number' placeholder='Введите число' />
+      <input
+        className={Style.input}
+        value={firstValue}
+        onChange={(event) => handleChangeFirstValue(event.currentTarget.value)}
+        placeholder='Введите число'
+      />
       <input className={Style.input} type='number' placeholder='Введите число' />
 
       <div className={Style.buttons}>
-        <button className={Style.button} onClick={AdditionButton}>
-          +
-        </button>
-        <button className={Style.button} onClick={SubtractionButton}>
-          -
-        </button>
-        <button className={Style.button} onClick={MultiplicationButton}>
-          *
-        </button>
-        <button className={Style.button} onClick={DivisionButton}>
-          /
-        </button>
+        <ActionButton type={"+"} onClick={onActionClick} />
+        <ActionButton type={"-"} onClick={onActionClick} />
+        <ActionButton type={"*"} onClick={onActionClick} />
+        <ActionButton type={"/"} onClick={onActionClick} />
       </div>
 
       <input className={Style.output} type='text' readOnly={true} />
