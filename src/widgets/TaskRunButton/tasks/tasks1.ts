@@ -34,26 +34,26 @@ export const t2 = reverse(data2);
 ///////////////////////Задание 3//////////////////////////////////////
 const data3 = [0, 1, false, 2, undefined, "", 3, null];
 
-const compact = (array) => array.filter((el) => el);
+const compact = (array: unknown[]) => array.filter((el) => el);
 export const t3 = compact(data3);
 
 ///////////////////////Задание 4//////////////////////////////////////
-const fromPairs = (array) =>
-  array.reduce((acc, value) => {
+const fromPairs = (array: [string, number][]): Record<string, number> =>
+  array.reduce<Record<string, number>>((acc, value) => {
     if (Array.isArray(value)) {
       acc[value[0]] = value[1];
     }
     return acc;
   }, {});
 
-const data4 = [
+const data4: [string, number][] = [
   ["a", 1],
   ["b", 2]
 ];
 export const t4 = fromPairs(data4);
 
 ///////////////////////Задание 5//////////////////////////////////////
-const without = (array, ...args) => {
+const without = (array: number[], ...args: number[]) => {
   let filteredArray = [...array];
 
   for (let i = 0; i < args.length; i += 1) {
@@ -67,7 +67,7 @@ const data5 = [1, 2, 3, 1, 2];
 export const t5 = without(data5, 1, 2);
 
 ///////////////////////Задание 6//////////////////////////////////////
-const unique = (array) => {
+const unique = (array: number[]) => {
   return Array.from(new Set(array));
 };
 
@@ -75,7 +75,7 @@ const data6 = [1, 2, 1, 2, 3];
 export const t6 = unique(data6);
 
 ///////////////////////Задание 7//////////////////////////////////////
-const isEqual = (firstArray, secondArray) => {
+const isEqual = (firstArray: number[], secondArray: number[]) => {
   if (firstArray.length !== secondArray.length) {
     return false;
   }
@@ -91,15 +91,16 @@ export const t72 = isEqual(arr71, arr73); // false
 export const t73 = isEqual(arr71, arr74); // false
 
 ///////////////////////Задание 8//////////////////////////////////////
-const flatten = (array) =>
-  array.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
+type RecurseArrayNumber = (number | RecurseArrayNumber)[];
+const flatten = (array: RecurseArrayNumber): number[] =>
+  array.reduce<number[]>((acc, val) => acc.concat(Array.isArray(val) ? flatten(val) : val), []);
 
 const data8 = [1, 2, [3, 4, [5]]];
 export const t8 = flatten(data8);
 
 ///////////////////////Задание 9//////////////////////////////////////
-const chunk = (array, size) => {
-  const result: number[] = [];
+const chunk = (array: number[], size: number) => {
+  const result: number[][] = [];
   let index = 0;
 
   while (index < array.length) {
@@ -115,7 +116,7 @@ export const t91 = chunk(data, 2); // [[1, 2], [3, 4], [5, 6], [7]]
 export const t92 = chunk(data, 3); // [[1, 2, 3], [4, 5, 6], [7]]
 
 ///////////////////////Задание 10//////////////////////////////////////
-const intersection = (...arrays) => {
+const intersection = (...arrays: (string | number)[][]) => {
   const result: Set<string | number> = new Set();
 
   for (let i = 0; i < arrays[0].length; i++) {
