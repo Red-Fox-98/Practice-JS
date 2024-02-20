@@ -22,11 +22,12 @@ import ActionButton, { Action } from "../../widgets/ActionButton/ActionButton";
     2. Компонент для кнопки (в нее в пропсах нужно передавать действие, за которое она отвечает)
     3. Компонент для результата, который будет все считать и выводить ответ
 */
-console.log();
+
 const Calculator: FC = () => {
   const [firstValue, setFirstValue] = useState("");
   const [secondValue, setSecondValue] = useState("");
 
+  // TODO: Исходя из нажатой кнопки производить вычисления. Сделать в рамках 4-о задания
   const onActionClick = (action: Action): void => {
     console.log(action);
     switch (action) {
@@ -37,6 +38,7 @@ const Calculator: FC = () => {
     }
   };
 
+  // TODO: перенос в NumberInput
   const handleChangeFirstValue = (newValue: string): void => {
     console.log(newValue);
     if (Number.isNaN(+newValue)) {
