@@ -1,6 +1,7 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import Style from "./calculator.module.scss";
 import ActionButton, { Action } from "../../widgets/ActionButton/ActionButton";
+import NumberInput from "../../widgets/NumberInput/NumberInput.tsx";
 
 /*
     Создать калькулятор
@@ -13,8 +14,8 @@ import ActionButton, { Action } from "../../widgets/ActionButton/ActionButton";
 
     путь выполнения:
     1. +Создать кнопки с действиями и проверить, что они нажимаются (например при нажатии логировать фразу)
-    2. Создать инпуты и проверить, что введеный текст сохраняется (<input onChange={(event) => handleInputUpdate(event.currentTarget.value)} />)
-    3. Добавить валидацию на инпуты. Валидация должна ЗАПРЕЩАТЬ ввод не валидного символа, а не "красить" инпут в красный цвет
+    2. +Создать инпуты и проверить, что введеный текст сохраняется (<input onChange={(event) => handleInputUpdate(event.currentTarget.value)} />)
+    3. +Добавить валидацию на инпуты. Валидация должна ЗАПРЕЩАТЬ ввод не валидного символа, а не "красить" инпут в красный цвет
     4. "Собрать" кнопки и строки в единую систему
 
     Необходимые компоненты:
@@ -24,8 +25,8 @@ import ActionButton, { Action } from "../../widgets/ActionButton/ActionButton";
 */
 
 const Calculator: FC = () => {
-  const [firstValue, setFirstValue] = useState("");
-  const [secondValue, setSecondValue] = useState("");
+  const [firstValue, setFirstValue] = useState<number | undefined>(undefined);
+  const [secondValue, setSecondValue] = useState<number | undefined>(undefined);
 
   // TODO: Исходя из нажатой кнопки производить вычисления. Сделать в рамках 4-о задания
   const onActionClick = (action: Action): void => {
@@ -33,29 +34,19 @@ const Calculator: FC = () => {
     switch (action) {
       case "+":
         break;
-      default:
+      case "-":
+        break;
+      case "*":
+        break;
+      case "/":
         break;
     }
   };
 
-  // TODO: перенос в NumberInput
-  const handleChangeFirstValue = (newValue: string): void => {
-    console.log(newValue);
-    if (Number.isNaN(+newValue)) {
-      return;
-    }
-    setFirstValue(newValue.trim());
-  };
-
   return (
     <div className={Style.screen}>
-      <input
-        className={Style.input}
-        value={firstValue}
-        onChange={(event) => handleChangeFirstValue(event.currentTarget.value)}
-        placeholder='Введите число'
-      />
-      <input className={Style.input} type='number' placeholder='Введите число' />
+      <NumberInput value={firstValue} onChange={setFirstValue} />
+      <NumberInput value={secondValue} onChange={setSecondValue} />
 
       <div className={Style.buttons}>
         <ActionButton type={"+"} onClick={onActionClick} />
