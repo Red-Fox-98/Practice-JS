@@ -11,7 +11,7 @@ export interface ActionButtonProps {
 const ActionButton: FC<ActionButtonProps> = ({ type, onClick }) => {
   return (
     <button className={Style.button} onClick={() => onClick?.(type)}>
-      {type}{" "}
+      {type}
     </button>
   );
 };
