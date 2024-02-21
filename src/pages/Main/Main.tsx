@@ -1,5 +1,4 @@
 import { useState } from "react";
-import * as React from "react";
 import CounterButton from "../../widgets/CounterButton/CounterButton";
 import Styles from "./main.module.scss";
 import TaskRunButton from "../../widgets/TaskRunButton/TaskRunButton";

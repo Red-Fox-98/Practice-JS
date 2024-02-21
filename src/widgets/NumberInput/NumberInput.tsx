@@ -9,11 +9,16 @@ interface NumberInputProps {
 
 const NumberInput: FC<NumberInputProps> = ({ value, onChange }) => {
   const handleChangeValue = (newValue: string): void => {
+    if (newValue.trim() === "") {
+      onChange(undefined);
+      return;
+    }
+
     if (Number.isNaN(+newValue)) {
       return;
     }
 
-    onChange(newValue == "" ? undefined : +newValue.trim());
+    onChange(+newValue.trim());
   };
 
   return (

@@ -40,8 +40,6 @@ const Calculator: FC = () => {
         break;
       case "/":
         break;
-      default:
-        break;
     }
   };
 
