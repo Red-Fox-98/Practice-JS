@@ -45,6 +45,8 @@ const Calculator: FC = () => {
       return;
     }
     setFirstValue(newValue.trim());
+
+    console.log(setFirstValue);
   };
 
   return (

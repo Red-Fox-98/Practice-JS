@@ -1,5 +1,5 @@
 .screen {
-  padding: 100px;
+  padding: 30px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -9,7 +9,7 @@
 .input {
   display: flex;
   text-align: center;
-  margin: 10px 0;
+  margin: 10px 5px;
   outline: none;
 }
 
@@ -22,10 +22,6 @@
 .buttons {
   display: flex;
   justify-content: center;
-}
-
-.button {
-  margin: 0 5px;
 }
 
 .output {
