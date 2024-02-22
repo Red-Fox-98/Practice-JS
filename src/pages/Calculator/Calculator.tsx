@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import Style from "./calculator.module.scss";
 import ActionButton, { Action } from "../../widgets/ActionButton/ActionButton";
 import NumberInput from "../../widgets/NumberInput/NumberInput.tsx";
+import { helpers } from "./helpers.ts";
 
 /*
     Создать калькулятор
@@ -27,20 +28,10 @@ import NumberInput from "../../widgets/NumberInput/NumberInput.tsx";
 const Calculator: FC = () => {
   const [firstValue, setFirstValue] = useState<number | undefined>(undefined);
   const [secondValue, setSecondValue] = useState<number | undefined>(undefined);
+  const [result, setResult] = useState<number | undefined>(undefined);
 
-  // TODO: Исходя из нажатой кнопки производить вычисления. Сделать в рамках 4-о задания
   const onActionClick = (action: Action): void => {
-    console.log(action);
-    switch (action) {
-      case "+":
-        break;
-      case "-":
-        break;
-      case "*":
-        break;
-      case "/":
-        break;
-    }
+    setResult(helpers(action)(Number(firstValue), Number(secondValue)));
   };
 
   return (
@@ -55,7 +46,7 @@ const Calculator: FC = () => {
         <ActionButton type={"/"} onClick={onActionClick} />
       </div>
 
-      <input className={Style.output} type='text' readOnly={true} />
+      <input className={Style.output} type='text' readOnly={true} value={result ?? ""} />
     </div>
   );
 };
