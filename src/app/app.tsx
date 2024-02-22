@@ -1,13 +1,8 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import Routes from "./Routes";
+import { RouterProvider } from "react-router-dom";
+import { routes } from "./Routes";
 
 const App = (): React.ReactElement => {
-  return (
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
-  );
+  return <RouterProvider router={routes} />;
 };
 
 export default App;
