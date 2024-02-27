@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../pages/Main/Main";
 import NotFound from "../pages/NotFound/NotFound";
 import Calculator from "../pages/Calculator/Calculator";
+import TaskBook from "../pages/TaskBook/TaskBook";
 
 export const routes = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ export const routes = createBrowserRouter([
   {
     path: "/calculator",
     element: <Calculator />
+  },
+  {
+    path: "/task-book",
+    element: <TaskBook />
   },
   {
     path: "/*",
