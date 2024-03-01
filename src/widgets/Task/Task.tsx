@@ -1,11 +1,17 @@
 import { FC } from "react";
 import { ITask } from "../../pages/TaskBook/TaskBook.tsx";
+import Style from "./Task.module.scss";
 
-const Task: FC<ITask> = ({ id, isDone, name }) => {
-  console.log(id);
+interface TaskProps {
+  data: ITask;
+}
+
+const Task: FC<TaskProps> = ({ data }) => {
   return (
-    <div>
-      <input key={id} value={id ?? ""} type={"text"} />
+    <div className={Style.task}>
+      <input type={"checkbox"} />
+      <input value={data.name ?? ""} type={"text"} className={Style.input} readOnly={true} />
+      <button className={Style.button}>X</button>
     </div>
   );
 };

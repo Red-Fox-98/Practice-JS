@@ -36,7 +36,7 @@ const TaskBook: FC = () => {
       </div>
       <div>
         {tasks.map((task) => (
-          <Task id={task.id} isDone={task.isDone} name={task.name} />
+          <Task key={task.id} data={task} />
         ))}
       </div>
     </div>
