@@ -1,16 +1,16 @@
 .screen {
   justify-content: center;
-  padding: 100px;
+  padding: 100px 25%;
 }
 
-.task{
+.task {
   display: flex;
   align-items: center;
   margin: 0 auto 10px;
 }
 
 .button,
-.checkbox{
+.checkbox {
   padding: 10px 25px;
   margin-right: 7px;
 }
