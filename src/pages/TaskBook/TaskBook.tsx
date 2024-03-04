@@ -29,6 +29,7 @@ const TaskBook: FC = () => {
     setTasks((prev) => {
       const newData = [...prev];
       const index = prev.findIndex((task) => task.id === newValue.id);
+      if (index < 0) return prev;
       newData[index] = newValue;
       return newData;
     });
