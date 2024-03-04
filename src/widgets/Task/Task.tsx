@@ -15,10 +15,14 @@ const Task: FC<TaskProps> = ({ data, onChange }) => {
 
   return (
     <div className={Style.task}>
-      <input checked={data.isDone} type={"checkbox"} readOnly={true} />
       <input
-        value={data.name}
+        type={"checkbox"}
+        checked={data.isDone}
+        onChange={(event) => handleChange("isDone", event.currentTarget.checked)}
+      />
+      <input
         className={Style.input}
+        value={data.name}
         onChange={(event) => handleChange("name", event.currentTarget.value)}
       />
       <button className={Style.button}>X</button>
