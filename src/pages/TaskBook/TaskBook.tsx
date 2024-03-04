@@ -1,7 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
 import Style from "./TaskBook.module.scss";
 import Task from "../../widgets/Task/Task.tsx";
-import task from "../../widgets/Task/Task.tsx";
 
 export interface ITask {
   id: number;
@@ -24,12 +23,9 @@ const TaskBook: FC = () => {
     setTasks((prev) => [...prev, newTask]);
   };
 
-  const handleChange = <TKey extends keyof ITask>(
-    id: number,
-    key: TKey,
-    newValue: ITask[TKey]
-  ): void => {
-    tasks[id][key] = newValue;
+  const changeTask = (newValue: ITask) => {
+    setTasks([newValue]);
+    console.log(tasks);
   };
 
   return (
@@ -45,7 +41,7 @@ const TaskBook: FC = () => {
       </div>
       <div>
         {tasks.map((task) => (
-          <Task key={task.id} data={task} onChange={handleChange} />
+          <Task key={task.id} data={task} onChange={changeTask} />
         ))}
       </div>
     </div>

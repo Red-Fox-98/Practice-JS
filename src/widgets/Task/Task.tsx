@@ -4,20 +4,22 @@ import Style from "./Task.module.scss";
 
 interface TaskProps {
   data: ITask;
-  onChange: <TKey extends keyof ITask>(id: number, key: TKey, newValue: ITask[TKey]) => void;
+  onChange: (newValue: ITask) => void;
   onRemove?: (idTask: number) => void;
 }
 
 const Task: FC<TaskProps> = ({ data, onChange }) => {
+  const handleChange = <TKey extends keyof ITask>(key: TKey, newValue: ITask[TKey]): void => {
+    onChange({ ...data, [key]: newValue });
+  };
+
   return (
     <div className={Style.task}>
+      <input checked={data.isDone} type={"checkbox"} readOnly={true} />
       <input
-        type={"checkbox"}
-        onChange={(event) => onChange(data.id, "isDone", event.currentTarget.checked)}
-      />
-      <input
+        value={data.name}
         className={Style.input}
-        onChange={(event) => onChange(data.id, "name", event.currentTarget.value)}
+        onChange={(event) => handleChange("name", event.currentTarget.value)}
       />
       <button className={Style.button}>X</button>
     </div>
