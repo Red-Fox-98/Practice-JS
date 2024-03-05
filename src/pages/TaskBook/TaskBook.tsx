@@ -35,6 +35,16 @@ const TaskBook: FC = () => {
     });
   };
 
+  const deleteTask = (idValue: number) => {
+    setTasks((prev) => {
+      const data = [...prev];
+      const index = prev.findIndex((task) => task.id === idValue);
+      if (index < 0) return prev;
+      data.splice(index, 1);
+      return data;
+    });
+  };
+
   return (
     <div className={Style.screen}>
       <div className={Style.task}>
@@ -48,7 +58,7 @@ const TaskBook: FC = () => {
       </div>
       <div>
         {tasks.map((task) => (
-          <Task key={task.id} data={task} onChange={changeTask} />
+          <Task key={task.id} data={task} onChange={changeTask} onRemove={deleteTask} />
         ))}
       </div>
     </div>
