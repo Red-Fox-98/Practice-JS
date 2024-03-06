@@ -1,8 +1,7 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useMemo, useRef, useState } from "react";
 import Style from "./TaskBook.module.scss";
 import Task from "../../widgets/Task/Task.tsx";
-import { Simulate } from "react-dom/test-utils";
-import load = Simulate.load;
+import { filterTask } from "./helpers.tsx";
 
 export interface ITask {
   id: number;
@@ -13,6 +12,7 @@ export interface ITask {
 const TaskBook: FC = () => {
   const [tasks, setTasks] = useState<ITask[]>([]);
   const newId = useRef<number>(0);
+  const [isDone, setIsDone] = useState(false);
 
   const createNewTask = () => {
     const newTask: ITask = {
@@ -22,24 +22,26 @@ const TaskBook: FC = () => {
     };
 
     newId.current += 1;
-    setTasks((prev) => [...prev, newTask]);
+    setTasks((prevState) => [...prevState, newTask]);
   };
 
   const changeTask = (newValue: ITask) => {
-    setTasks((prev) => {
-      const newData = [...prev];
-      const index = prev.findIndex((task) => task.id === newValue.id);
-      if (index < 0) return prev;
+    setTasks((prevState) => {
+      const newData = [...prevState];
+      const index = prevState.findIndex((task) => task.id === newValue.id);
+      if (index < 0) return prevState;
       newData[index] = newValue;
       return newData;
     });
   };
 
+  const filteredTasks = useMemo(() => filterTask(tasks, isDone), [tasks, isDone]);
+
   const deleteTask = (idValue: number) => {
-    setTasks((prev) => {
-      const data = [...prev];
-      const index = prev.findIndex((task) => task.id === idValue);
-      if (index < 0) return prev;
+    setTasks((prevState) => {
+      const data = [...prevState];
+      const index = prevState.findIndex((task) => task.id === idValue);
+      if (index < 0) return prevState;
       data.splice(index, 1);
       return data;
     });
@@ -52,12 +54,17 @@ const TaskBook: FC = () => {
           Создать
         </button>
         <div>
-          <input className={Style.checkbox} type={"checkbox"} />
+          <input
+            type={"checkbox"}
+            className={Style.checkbox}
+            checked={isDone}
+            onChange={(event) => setIsDone(event.currentTarget.checked)}
+          />
           <label>только НЕ выполненные задачи</label>
         </div>
       </div>
       <div>
-        {tasks.map((task) => (
+        {filteredTasks.map((task) => (
           <Task key={task.id} data={task} onChange={changeTask} onRemove={deleteTask} />
         ))}
       </div>

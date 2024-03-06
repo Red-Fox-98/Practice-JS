@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { ITask } from "../../pages/TaskBook/TaskBook.tsx";
 import Style from "./Task.module.scss";
 
