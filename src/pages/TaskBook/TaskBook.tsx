@@ -10,7 +10,7 @@ export interface ITask {
 }
 
 const TaskBook: FC = () => {
-  const [tasks, setTask] = useState<ITask[]>([]);
+  const [tasks, setTasks] = useState<ITask[]>([]);
   const newId = useRef<number>(0);
   const [isDone, setIsDone] = useState(false);
 
@@ -22,11 +22,11 @@ const TaskBook: FC = () => {
     };
 
     newId.current += 1;
-    setTask((prevState) => [...prevState, newTask]);
+    setTasks((prevState) => [...prevState, newTask]);
   };
 
   const changeTask = (newValue: ITask) => {
-    setTask((prevState) => {
+    setTasks((prevState) => {
       const newData = [...prevState];
       const index = prevState.findIndex((task) => task.id === newValue.id);
       if (index < 0) return prevState;
@@ -38,7 +38,7 @@ const TaskBook: FC = () => {
   const filteredTasks = useMemo(() => filterTask(tasks, isDone), [tasks, isDone]);
 
   const deleteTask = (idValue: number) => {
-    setTask((prevState) => {
+    setTasks((prevState) => {
       const data = [...prevState];
       const index = prevState.findIndex((task) => task.id === idValue);
       if (index < 0) return prevState;
@@ -57,6 +57,7 @@ const TaskBook: FC = () => {
           <input
             type={"checkbox"}
             className={Style.checkbox}
+            checked={isDone}
             onChange={(event) => setIsDone(event.currentTarget.checked)}
           />
           <label>только НЕ выполненные задачи</label>

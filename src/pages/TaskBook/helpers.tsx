@@ -1,11 +1,10 @@
 import { ITask } from "./TaskBook.tsx";
 
-export function filterTask(tasks: ITask[], filterRules: boolean) {
+export function filterTask(tasks: ITask[], filterIsDone: boolean) {
   return tasks.filter((task) => {
-    if (!filterRules) {
-      return true;
-    } else if (filterRules) {
+    if (filterIsDone) {
       return !task.isDone;
     }
+    return true;
   });
 }
